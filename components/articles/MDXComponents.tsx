@@ -1,6 +1,16 @@
 import type { MDXComponents } from "mdx/types";
+import {
+  CodeDistanceFigure,
+  CodeFamilyFigure,
+  EEGWaveFigure,
+  PullQuote,
+} from "@/components/articles/Diagrams";
 
 export const mdxComponents: MDXComponents = {
+  CodeDistanceFigure,
+  CodeFamilyFigure,
+  EEGWaveFigure,
+  PullQuote,
   h1: (props) => (
     <h1 className="mt-10 font-display text-3xl text-foreground" {...props} />
   ),

@@ -6,7 +6,7 @@ import type {
 } from "@/types";
 
 export const summary =
-  "I'm an M.Tech scholar in Quantum Technology at IIT Jodhpur, working at the intersection of quantum computing, quantum machine learning, and classical AI/ML — currently researching why neural decoders for quantum error correction do or don't generalize. My curiosity extends past the lab: mathematics, cognitive science, and philosophy of mind all shape how I think about learning, error, and generalization, in silicon and otherwise. Before this, I spent two years as a data scientist building production ML systems, which is the practical backbone under all of it.";
+  "I'm an M.Tech scholar in Quantum Technology at IIT Jodhpur, working at the intersection of quantum computing, quantum machine learning, and classical AI/ML — currently researching quantum error correction and hybrid quantum-classical systems. My curiosity extends past the lab: mathematics, cognitive science, and philosophy of mind all shape how I think about learning, error, and generalization, in silicon and otherwise. Before this, I spent two years as a data scientist building production ML systems, which is the practical backbone under all of it.";
 
 export const education: EducationEntry[] = [
   { degree: "M.Tech, Quantum Technology", institute: "Indian Institute of Technology, Jodhpur", score: "9.25 CGPA", year: "2026" },

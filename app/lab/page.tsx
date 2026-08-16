@@ -40,15 +40,22 @@ export default function LabPage() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <Card className="h-full opacity-60">
-            <Sparkles className="h-6 w-6 text-foreground-faint" />
-            <h3 className="mt-4 font-display text-xl text-foreground">
-              More explainers coming soon
-            </h3>
-            <p className="mt-2 text-sm text-foreground-muted">
-              Next up: a 3D Bloch-sphere visualization of single-qubit gates.
-            </p>
-          </Card>
+          <Link href="/lab/quantum-neural-network" data-cursor-hover>
+            <Card className="h-full hover:-translate-y-1">
+              <Sparkles className="h-6 w-6 text-cyan" />
+              <h3 className="mt-4 font-display text-xl text-foreground">
+                Quantum Neural Networks
+              </h3>
+              <p className="mt-2 text-sm text-foreground-muted">
+                A real 2-qubit variational circuit, trained live in your
+                browser with the parameter-shift rule — watch entanglement
+                unlock a boundary a classical linear model can&apos;t reach.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-1 text-sm text-cyan">
+                Open explainer <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Card>
+          </Link>
         </Reveal>
       </div>
     </Container>

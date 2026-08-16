@@ -25,6 +25,7 @@ export const projects: Project[] = [
       "D-Wave Ocean SDK",
     ],
     links: {},
+    featured: true,
   },
   {
     slug: "hybrid-quantum-classical-nn",
@@ -53,6 +54,22 @@ export const projects: Project[] = [
     category: "quantum",
     techStack: ["Python", "Qiskit", "Quantum Communication", "QBER Analysis", "Streamlit"],
     links: { github: "https://github.com/Naveen-das09/BB84-Simulation-Demo" },
+    featured: true,
+  },
+  {
+    slug: "qscreen",
+    title: "QScreen",
+    summary:
+      "A screening toolkit for quantum ML circuits — diagnosing barren plateaus and trainability before committing to a full training run.",
+    description: [
+      "Built a diagnostic toolkit for quantum ML circuit design, screening candidate ansätze for barren plateaus, gradient variance, and mutual information before expensive training runs.",
+      "Implemented kernel-based analysis to compare circuit expressivity and trainability across architectures.",
+      "Added a natural-language interface for circuit screening queries, wrapped in a Streamlit app.",
+    ],
+    category: "quantum",
+    techStack: ["PennyLane", "Qiskit", "Streamlit", "Python"],
+    links: {},
+    featured: true,
   },
   {
     slug: "rag-application",

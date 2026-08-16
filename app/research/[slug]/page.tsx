@@ -47,14 +47,6 @@ export default async function ResearchEntryPage({ params }: PageProps<"/research
 
         <p className="mt-8 text-foreground-muted">{entry.abstract}</p>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {entry.targetVenues.map((v) => (
-            <Badge key={v} tone="cyan">
-              {v}
-            </Badge>
-          ))}
-        </div>
-
         <Button href="/lab/quantum-error-correction" variant="outline" className="mt-10">
           See it visualized in the Lab <ArrowRight className="h-4 w-4" />
         </Button>

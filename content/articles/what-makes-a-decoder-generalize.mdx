@@ -12,4 +12,10 @@ The pattern of triggered stabilizers is called the **syndrome**. Turning a syndr
 
 There's a catch. Most neural decoders are trained and evaluated on a single lattice size (**code distance**) and a single lattice topology (**code family**). That leaves an open question I find genuinely interesting: if you train a decoder at distance 5, does it still work at distance 7? If you train it on a surface code, does anything it learned transfer to a repetition code?
 
+<CodeDistanceFigure />
+
+<CodeFamilyFigure />
+
+<PullQuote>Does a decoder trained on one lattice actually understand error correction — or did it just memorize that lattice?</PullQuote>
+
 My thesis studies this transfer problem directly, and proposes **coset-graded supervision** — structuring the training signal around the algebraic cosets of the stabilizer group, rather than raw syndrome-to-correction pairs — as a candidate mechanism for improving generalization. It's still early, pre-results work, but I built an [interactive explainer](/lab/quantum-error-correction) that walks through the surface code, syndrome measurement, and decoding at different distances and families, if you want the intuition without the equations.

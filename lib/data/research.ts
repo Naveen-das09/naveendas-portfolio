@@ -6,7 +6,6 @@ export interface ResearchEntry {
   summary: string;
   abstract: string;
   institute: string;
-  targetVenues: string[];
 }
 
 export const researchEntries: ResearchEntry[] = [
@@ -21,7 +20,6 @@ export const researchEntries: ResearchEntry[] = [
     abstract:
       "Neural network decoders for quantum error correction are typically trained and evaluated on a single code distance and code family, leaving open the question of whether — and why — they generalize when that structure changes. This work studies transfer of neural QEC decoders across code distance and code family, and proposes coset-graded supervision as a candidate mechanism for improving generalization, backed by a falsifiable experimental plan (E0–E4).",
     institute: "Indian Institute of Technology, Jodhpur — M.Tech Quantum Technology",
-    targetVenues: ["Quantum", "npj Quantum Information", "PRX Quantum", "Physical Review Applied"],
   },
 ];
 
