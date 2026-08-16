@@ -60,11 +60,10 @@ export const projects: Project[] = [
     slug: "qscreen",
     title: "QScreen",
     summary:
-      "A screening toolkit for quantum ML circuits — diagnosing barren plateaus and trainability before committing to a full training run.",
+      "A data-driven algorithm that scores how 'quantum-friendly' a dataset is, before committing to an expensive quantum ML training run.",
     description: [
-      "Built a diagnostic toolkit for quantum ML circuit design, screening candidate ansätze for barren plateaus, gradient variance, and mutual information before expensive training runs.",
-      "Implemented kernel-based analysis to compare circuit expressivity and trainability across architectures.",
-      "Added a natural-language interface for circuit screening queries, wrapped in a Streamlit app.",
+      "Built a data-driven scoring algorithm that analyzes a dataset and outputs a quantum suitability score, indicating how well-suited it is to a quantum ML approach.",
+      "Used the score as a screening step ahead of training, so quantum ML is only applied to datasets likely to benefit from it, rather than committing compute upfront.",
     ],
     category: "quantum",
     techStack: ["PennyLane", "Qiskit", "Streamlit", "Python"],
