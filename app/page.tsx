@@ -1,69 +1,128 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Atom } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { Button } from "@/components/ui/Button";
+import { Reveal } from "@/components/ui/Reveal";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+import { HeroVisual } from "@/components/home/HeroVisual";
+import { site } from "@/lib/data/site";
+import { projects } from "@/lib/data/projects";
+import { thesis } from "@/lib/data/research";
+import { achievements, education } from "@/lib/data/experience";
+
+const stats = [
+  { label: "M.Tech CGPA", value: education[0].score ?? "" },
+  { label: achievements[1].title, value: achievements[1].detail ?? "" },
+  { label: achievements[0].title, value: achievements[0].detail ?? "" },
+];
 
 export default function Home() {
+  const featured = projects.filter((p) => p.featured);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <>
+      <section className="pt-20 pb-24 md:pt-28">
+        <Container className="grid items-center gap-16 md:grid-cols-2">
+          <Reveal>
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-cyan">
+              {site.role}
+            </p>
+            <h1 className="mt-4 font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
+              Building at the intersection of{" "}
+              <span className="text-violet">quantum computing</span> and{" "}
+              <span className="text-cyan">applied machine learning</span>.
+            </h1>
+            <p className="mt-6 max-w-lg text-foreground-muted">{site.tagline}</p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button href="/projects">
+                View Projects <ArrowRight className="h-4 w-4" />
+              </Button>
+              <Button href="/lab/quantum-error-correction" variant="outline">
+                <Atom className="h-4 w-4" /> Explore the QEC Lab
+              </Button>
+            </div>
+            <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <dt className="font-mono text-[11px] uppercase tracking-wide text-foreground-faint">
+                    {stat.label}
+                  </dt>
+                  <dd className="mt-1 text-lg text-foreground">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <HeroVisual />
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="border-t border-border py-24">
+        <Container>
+          <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-cyan">
+                Featured Work
+              </p>
+              <h2 className="mt-3 font-display text-3xl text-foreground md:text-4xl">
+                Quantum &amp; applied ML projects
+              </h2>
+            </div>
+            <Link
+              href="/projects"
+              data-cursor-hover
+              className="flex items-center gap-1 text-sm text-foreground-muted hover:text-cyan"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              All projects <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {featured.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 0.08}>
+                <ProjectCard project={project} />
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-t border-border py-24">
+        <Container className="grid gap-10 md:grid-cols-2">
+          <Reveal>
+            <div className="rounded-2xl border border-border bg-surface/60 p-8">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-violet">
+                Interactive Lab
+              </p>
+              <h3 className="mt-3 font-display text-2xl text-foreground">
+                See how a quantum computer corrects its own errors
+              </h3>
+              <p className="mt-4 text-sm text-foreground-muted">
+                A step-by-step, click-through visualization of the surface code —
+                inject an error, watch stabilizers measure the syndrome, and see a
+                decoder propose a correction across different code distances and
+                families. Built alongside my M.Tech thesis on decoder
+                generalization.
+              </p>
+              <Button href="/lab/quantum-error-correction" variant="outline" className="mt-6">
+                Open the explainer <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="rounded-2xl border border-border bg-surface/60 p-8">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-warm">
+                Research
+              </p>
+              <h3 className="mt-3 font-display text-2xl text-foreground">{thesis.title}</h3>
+              <p className="mt-4 text-sm text-foreground-muted">{thesis.status}</p>
+              <Button href="/research" variant="outline" className="mt-6">
+                Read the abstract <ArrowRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </Reveal>
+        </Container>
+      </section>
+    </>
   );
 }

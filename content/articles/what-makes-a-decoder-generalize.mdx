@@ -1,0 +1,15 @@
+---
+title: "What Makes a Quantum Decoder Generalize?"
+date: "2026-02-10"
+summary: "A plain-language look at the question driving my M.Tech thesis: why do neural decoders for quantum error correction struggle to transfer across code distance and code family?"
+tags: ["quantum error correction", "machine learning", "thesis"]
+draft: false
+---
+
+Every physical qubit is noisy. Quantum error correction (QEC) deals with this by spreading one *logical* qubit's worth of information across many *physical* qubits, arranged in a lattice, and continuously measuring parity checks — "stabilizers" — that reveal when something has gone wrong without collapsing the encoded information itself.
+
+The pattern of triggered stabilizers is called the **syndrome**. Turning a syndrome into the right correction is a decoding problem, and it's a hard one: as lattices grow, the space of possible error patterns explodes combinatorially. Classical decoding algorithms exist, but neural network decoders have become an active area of research because they can, in principle, learn decoding strategies directly from data.
+
+There's a catch. Most neural decoders are trained and evaluated on a single lattice size (**code distance**) and a single lattice topology (**code family**). That leaves an open question I find genuinely interesting: if you train a decoder at distance 5, does it still work at distance 7? If you train it on a surface code, does anything it learned transfer to a repetition code?
+
+My thesis studies this transfer problem directly, and proposes **coset-graded supervision** — structuring the training signal around the algebraic cosets of the stabilizer group, rather than raw syndrome-to-correction pairs — as a candidate mechanism for improving generalization. It's still early, pre-results work, but I built an [interactive explainer](/lab/quantum-error-correction) that walks through the surface code, syndrome measurement, and decoding at different distances and families, if you want the intuition without the equations.

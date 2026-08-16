@@ -1,0 +1,13 @@
+---
+title: "From Predictive Maintenance to Quantum Error Correction"
+date: "2026-01-15"
+summary: "How two years of shipping production ML pipelines shaped the way I now think about quantum computing research."
+tags: ["career", "quantum computing", "machine learning"]
+draft: false
+---
+
+Before IIT Jodhpur, I spent two years as a data scientist at Gadgeon Smart Systems, building ML pipelines for predictive maintenance on industrial IoT sensor data — LSTMs and gradient-boosted trees forecasting equipment failures from noisy, high-frequency streams. It was a good education in a specific kind of humility: models that look great on a held-out test set can still fail quietly in production, because the deployment distribution never quite matches training.
+
+That question — *does this actually generalize, or did it just memorize the conditions it was trained under?* — turned out to be the thread that pulled me toward quantum computing, and specifically toward quantum error correction. QEC decoders face a sharper version of the same problem: train a neural decoder on one lattice size or topology, and there's no guarantee it transfers to another. The stakes are different — fault-tolerant quantum computing rather than factory uptime — but the underlying research instinct is the same one I built on noisy sensor data.
+
+The M.Tech in Quantum Technology at IIT Jodhpur has been a chance to formalize that instinct: real coursework in quantum algorithms, quantum optimization, and quantum error correction, alongside hands-on work with Qiskit and PennyLane on problems ranging from QAOA-based vehicle routing to BB84 key distribution simulations. My current thesis work on decoder generalization is where these two halves — production ML pragmatism and quantum theory — actually meet.
