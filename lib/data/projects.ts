@@ -25,7 +25,6 @@ export const projects: Project[] = [
       "D-Wave Ocean SDK",
     ],
     links: {},
-    featured: true,
   },
   {
     slug: "hybrid-quantum-classical-nn",
@@ -54,7 +53,6 @@ export const projects: Project[] = [
     category: "quantum",
     techStack: ["Python", "Qiskit", "Quantum Communication", "QBER Analysis", "Streamlit"],
     links: { github: "https://github.com/Naveen-das09/BB84-Simulation-Demo" },
-    featured: true,
   },
   {
     slug: "rag-application",
@@ -68,7 +66,6 @@ export const projects: Project[] = [
     category: "ml-ai",
     techStack: ["GPT", "Llama3", "LangChain", "Chroma", "Pinecone", "FastAPI", "Docker"],
     links: { github: "https://github.com/Naveen-das09/RAG_pdf" },
-    featured: true,
   },
   {
     slug: "canine-eeg-bci",
@@ -82,6 +79,22 @@ export const projects: Project[] = [
     category: "ml-ai",
     techStack: ["Python", "MNE", "Biosignal Processing", "Neural Networks", "Time Series"],
     links: { github: "https://github.com/Naveen-das09/Canine-EEG-analysis" },
+    featured: true,
+  },
+  {
+    slug: "ai-job-hunter",
+    title: "AI Job Hunter",
+    summary:
+      "A full-stack job search assistant that scrapes postings, parses resumes, and uses an LLM to match candidates to roles.",
+    description: [
+      "Built an automated pipeline that scrapes job postings, parses resumes, and scores candidate-role fit using Claude.",
+      "Scheduled recurring scrape-and-match runs, persisting results for review through a Streamlit frontend backed by a FastAPI service.",
+      "Containerised both the API and frontend with Docker for reproducible local deployment.",
+    ],
+    category: "ml-ai",
+    techStack: ["FastAPI", "Streamlit", "Claude", "Python", "SQLite", "Docker"],
+    links: {},
+    featured: true,
   },
 ];
 

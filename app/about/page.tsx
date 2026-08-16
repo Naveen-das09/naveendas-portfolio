@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { ProfilePhoto } from "@/components/about/ProfilePhoto";
 import {
   achievements,
   certifications,
@@ -19,7 +20,10 @@ export default function AboutPage() {
   return (
     <Container className="py-20">
       <Reveal>
-        <SectionHeading eyebrow="About" title="Naveen S Das" description={summary} />
+        <div className="flex flex-col-reverse items-start gap-8 md:flex-row md:items-center">
+          <SectionHeading eyebrow="About" title="Naveen S Das" description={summary} />
+          <ProfilePhoto />
+        </div>
       </Reveal>
 
       <Reveal delay={0.05}>

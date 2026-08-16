@@ -128,7 +128,7 @@ export function QECCanvas({
       if (showCorrection && correctionId && correctionStart.current) {
         const progress = reducedMotion.current
           ? 1
-          : Math.min(1, (now - correctionStart.current) / 500);
+          : Math.max(0, Math.min(1, (now - correctionStart.current) / 500));
         const dq = lattice.dataQubits.find((d) => d.id === correctionId);
         if (dq) {
           const center = project(dq.col, dq.row);
@@ -184,7 +184,7 @@ export function QECCanvas({
 
         // spark burst on freshly-injected error
         if (isError && sparkStart.current !== null && !reducedMotion.current) {
-          const t = (now - sparkStart.current) / 900;
+          const t = Math.max(0, (now - sparkStart.current) / 900);
           if (t < 1) {
             ctx.save();
             ctx.globalAlpha = 1 - t;

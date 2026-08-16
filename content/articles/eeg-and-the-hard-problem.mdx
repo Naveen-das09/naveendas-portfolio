@@ -1,0 +1,15 @@
+---
+title: "What an EEG Can and Can't Tell You About a Mind"
+date: "2026-03-01"
+summary: "Notes on the gap between decoding a signal and understanding a mind — from a BCI project on canine scent perception, and a lingering interest in philosophy of mind."
+tags: ["cognitive science", "philosophy", "neuroscience"]
+draft: false
+---
+
+A few months into building an EEG classification pipeline for canine olfaction — decoding neural signatures of scent from raw brainwave data — I noticed something a little humbling. The pipeline worked. Preprocessing, feature extraction, a neural network trained to tell "this scent" from "that scent" from nothing but electrical noise on a scalp. The classifier didn't need to know what a smell *is* to reliably tell smells apart.
+
+That's the gap I keep circling back to, outside of work hours: the distance between decoding a signal and understanding a mind. A model can learn a very good function from brain activity to behavioral label without ever touching the question of what it's like to be the animal generating that activity — what philosophers call the "hard problem" of consciousness. Predicting is not the same as explaining, and explaining is not the same as understanding what something feels like from the inside.
+
+I don't think this is just philosophical hand-wringing; it shows up as a practical modeling choice. Every time I decide what counts as a "feature" in a biosignal pipeline, I'm implicitly deciding what's meaningful about the underlying process and what's noise — a decision that's as much conceptual as statistical. The same tension shows up, in a different costume, in my quantum error correction work: a decoder can learn to map syndromes to corrections without anything resembling an explanatory model of *why* a given correction is right, and it's an open question how much that matters for whether it generalizes.
+
+I don't have a tidy resolution here — a Computational Neuroscience course and one BCI project don't make a philosopher of mind out of anyone. But I'd rather sit with the question of what our models actually understand than assume that good predictive accuracy has answered it for us.

@@ -6,12 +6,12 @@ import type {
 } from "@/types";
 
 export const summary =
-  "M.Tech scholar in Quantum Technology at IIT Jodhpur, specialising in Quantum Optimization and Quantum Machine Learning — hands-on with QAOA, quantum algorithms, QUBO/Ising formulations, and variational quantum algorithms. Combines this with a strong foundation in data science, AI/ML, and production-grade software engineering built over two years as a data scientist.";
+  "I'm an M.Tech scholar in Quantum Technology at IIT Jodhpur, working at the intersection of quantum computing, quantum machine learning, and classical AI/ML — currently researching why neural decoders for quantum error correction do or don't generalize. My curiosity extends past the lab: mathematics, cognitive science, and philosophy of mind all shape how I think about learning, error, and generalization, in silicon and otherwise. Before this, I spent two years as a data scientist building production ML systems, which is the practical backbone under all of it.";
 
 export const education: EducationEntry[] = [
   { degree: "M.Tech, Quantum Technology", institute: "Indian Institute of Technology, Jodhpur", score: "9.25 CGPA", year: "2026" },
   { degree: "PGP, Data Science", institute: "Great Lakes Institute of Management, Gurgaon", year: "2022" },
-  { degree: "B.Tech, Electronics & Communication Engineering", institute: "Model Engineering College, Kochi", score: "6.59 CGPA", year: "2020" },
+  { degree: "B.Tech, Electronics & Communication Engineering", institute: "Model Engineering College, Kochi", year: "2020" },
 ];
 
 export const experience: ExperienceEntry[] = [
@@ -32,15 +32,16 @@ export const experience: ExperienceEntry[] = [
 
 export const skillGroups: { title: string; skills: string[] }[] = [
   {
-    title: "Quantum Optimization",
+    title: "Quantum Tech",
     skills: [
-      "QAOA & variants",
-      "QUBO/Ising formulations",
-      "Variational Quantum Eigensolver (VQE)",
-      "Quantum Annealing",
-      "Combinatorial Optimization",
-      "Gradient-based & gradient-free parameter optimization",
-      "Noise mitigation on NISQ devices",
+      "Quantum Optimization (QAOA, VQE, Annealing)",
+      "Quantum Machine Learning",
+      "Quantum Communication (QKD / BB84)",
+      "Quantum Algorithms",
+      "QUBO/Ising Formulations",
+      "Qiskit",
+      "PennyLane",
+      "NISQ Noise Mitigation",
     ],
   },
   {

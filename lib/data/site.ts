@@ -2,9 +2,9 @@ export const site = {
   name: "Naveen S Das",
   role: "M.Tech Quantum Technology, IIT Jodhpur",
   tagline:
-    "Quantum Optimization & Quantum Machine Learning — with a foundation in data science and production ML engineering.",
+    "Working at the edge of quantum computing and AI, with a lasting curiosity for mathematics, cognitive science, and philosophy of mind.",
   description:
-    "Portfolio of Naveen S Das — quantum computing, quantum machine learning, and applied AI/ML projects, research, and interactive explainers.",
+    "Portfolio of Naveen S Das — quantum computing, AI/ML, and the questions from mathematics, cognitive science, and philosophy that connect them.",
   email: "naveensdaspro98@gmail.com",
   github: "https://github.com/Naveen-das09",
   linkedin: "https://www.linkedin.com/in/naveen-das-44b44b197/",

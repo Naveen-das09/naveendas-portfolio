@@ -7,14 +7,9 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { HeroVisual } from "@/components/home/HeroVisual";
 import { site } from "@/lib/data/site";
 import { projects } from "@/lib/data/projects";
-import { thesis } from "@/lib/data/research";
-import { achievements, education } from "@/lib/data/experience";
+import { researchEntries } from "@/lib/data/research";
 
-const stats = [
-  { label: "M.Tech CGPA", value: education[0].score ?? "" },
-  { label: achievements[1].title, value: achievements[1].detail ?? "" },
-  { label: achievements[0].title, value: achievements[0].detail ?? "" },
-];
+const thesis = researchEntries[0];
 
 export default function Home() {
   const featured = projects.filter((p) => p.featured);
@@ -41,16 +36,6 @@ export default function Home() {
                 <Atom className="h-4 w-4" /> Explore the QEC Lab
               </Button>
             </div>
-            <dl className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <dt className="font-mono text-[11px] uppercase tracking-wide text-foreground-faint">
-                    {stat.label}
-                  </dt>
-                  <dd className="mt-1 text-lg text-foreground">{stat.value}</dd>
-                </div>
-              ))}
-            </dl>
           </Reveal>
           <Reveal delay={0.15}>
             <HeroVisual />
@@ -66,7 +51,7 @@ export default function Home() {
                 Featured Work
               </p>
               <h2 className="mt-3 font-display text-3xl text-foreground md:text-4xl">
-                Quantum &amp; applied ML projects
+                Quantum, AI &amp; software projects
               </h2>
             </div>
             <Link
@@ -116,7 +101,7 @@ export default function Home() {
               </p>
               <h3 className="mt-3 font-display text-2xl text-foreground">{thesis.title}</h3>
               <p className="mt-4 text-sm text-foreground-muted">{thesis.status}</p>
-              <Button href="/research" variant="outline" className="mt-6">
+              <Button href={`/research/${thesis.slug}`} variant="outline" className="mt-6">
                 Read the abstract <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
