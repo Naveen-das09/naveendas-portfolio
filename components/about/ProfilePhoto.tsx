@@ -3,7 +3,7 @@ import path from "node:path";
 import Image from "next/image";
 import { QubitMark } from "@/components/icons/BrandIcons";
 
-const PHOTO_FILENAME = "naveen-photo.jpg";
+const PHOTO_FILENAME = "naveen-photo.png";
 
 export function ProfilePhoto() {
   const exists = fs.existsSync(path.join(process.cwd(), "public", PHOTO_FILENAME));
@@ -16,7 +16,7 @@ export function ProfilePhoto() {
           alt="Naveen S Das"
           fill
           sizes="192px"
-          className="object-cover"
+          className="object-cover object-[center_20%]"
           priority
         />
       ) : (
