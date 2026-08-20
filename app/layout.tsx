@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/data/site";
+import { projects } from "@/lib/data/projects";
+import { researchEntries } from "@/lib/data/research";
+import { getArticleSlugs } from "@/lib/mdx";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { LatticeBackground } from "@/components/layout/LatticeBackground";
+import { EntanglementField } from "@/components/home/EntanglementField";
 import { CustomCursor } from "@/components/layout/CustomCursor";
+import { AchievementsWidget } from "@/components/achievements/AchievementsWidget";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -54,12 +59,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <LatticeBackground />
+        <EntanglementField />
         <CustomCursor />
         <Navbar />
         <main id="main-content" className="flex-1">
           {children}
         </main>
         <Footer />
+        <AchievementsWidget
+          projectSlugs={projects.map((p) => p.slug)}
+          researchSlugs={researchEntries.map((r) => r.slug)}
+          articleSlugs={getArticleSlugs()}
+        />
       </body>
     </html>
   );

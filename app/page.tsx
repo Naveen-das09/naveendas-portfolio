@@ -4,7 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { HeroVisual } from "@/components/home/HeroVisual";
+import { HeroVisualGate } from "@/components/home/HeroVisualGate";
 import { site } from "@/lib/data/site";
 import { projects } from "@/lib/data/projects";
 import { researchEntries } from "@/lib/data/research";
@@ -38,7 +38,7 @@ export default function Home() {
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <HeroVisual />
+            <HeroVisualGate />
           </Reveal>
         </Container>
       </section>

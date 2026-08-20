@@ -1,3 +1,7 @@
+"use client";
+
+import { motion, useScroll, useTransform } from "framer-motion";
+
 const TILE = 72;
 const NODE_R = 1.6;
 
@@ -10,6 +14,14 @@ const patternSvg = encodeURIComponent(`
 `.trim());
 
 export function LatticeBackground() {
+  const { scrollYProgress } = useScroll();
+  const glowAlpha = useTransform(scrollYProgress, [0, 1], [0.08, 0.24]);
+  const glowBackground = useTransform(
+    glowAlpha,
+    (alpha) =>
+      `radial-gradient(ellipse 80% 60% at 50% 0%, transparent 0%, var(--background) 75%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(185,131,255,${alpha}), transparent 60%)`,
+  );
+
   return (
     <div
       aria-hidden="true"
@@ -22,13 +34,7 @@ export function LatticeBackground() {
           backgroundRepeat: "repeat",
         }}
       />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, transparent 0%, var(--background) 75%), radial-gradient(ellipse 60% 50% at 100% 100%, rgba(185,131,255,0.08), transparent 60%)",
-        }}
-      />
+      <motion.div className="absolute inset-0" style={{ background: glowBackground }} />
     </div>
   );
 }

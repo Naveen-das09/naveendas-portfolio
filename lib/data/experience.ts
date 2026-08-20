@@ -16,6 +16,18 @@ export const education: EducationEntry[] = [
 
 export const experience: ExperienceEntry[] = [
   {
+    role: "Quantum Research Intern",
+    org: "Infosys",
+    location: "Bangalore, India",
+    period: "May 2026 – Jul 2026",
+    bullets: [
+      "Researched quantum-friendly feature and dataset characterization for quantum machine learning, informing when a problem is worth encoding onto quantum hardware.",
+      "Built a decision engine that routes optimization problems and datasets across classical, quantum, and hybrid quantum-classical compute — work now undergoing patent (IP) filing.",
+      "Designed and prototyped Quantum Agents: agentic-AI-orchestrated quantum solvers for optimization, building the full stack from problem encoding through solver orchestration.",
+      "Contributed to enterprise-grade product design for quantum application software, defining agentic AI workflows for customer-facing quantum solutions.",
+    ],
+  },
+  {
     role: "Data Scientist",
     org: "Gadgeon Smart Systems Pvt Ltd",
     location: "Kerala, India",

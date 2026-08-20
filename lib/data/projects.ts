@@ -2,28 +2,19 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    slug: "quantum-vrp",
-    title: "Quantum Optimization for Vehicle Routing Problem",
+    slug: "qflux",
+    title: "Q-FLUX — Quantum-Optimized Fleet Logistics Digital Twin",
     summary:
-      "Formulating the Vehicle Routing Problem as QUBO/Ising models and solving it with QAOA and quantum annealing.",
+      "A live digital-twin fleet logistics platform that formulates truck-to-order assignment as a QUBO, solves it with a quantum annealer, and re-optimizes in real time when disruptions occur.",
     description: [
-      "Formulated the Vehicle Routing Problem (VRP) and capacitated variants as QUBO/Ising models, enabling quantum-ready encoding for both gate-based (QAOA) and annealing-based solvers.",
-      "Transformed QUBO into Ising Hamiltonian representation for compatibility with quantum optimization frameworks.",
-      "Analysed QUBO–Ising mappings, variational circuit design strategies, and parameter optimization methods (gradient-based and gradient-free) for real hardware constraints.",
-      "Implemented QAOA using Qiskit and PennyLane, and analyzed solution quality across parameter iterations.",
-      "Solved the optimization problem using quantum annealing on D-Wave Systems (Leap / Ocean SDK).",
-      "Visualized optimized routes, energy landscapes, and convergence behavior using NumPy and Matplotlib.",
+      "Formulated truck-to-order assignment across a multi-depot delivery fleet as a QUBO and solved it with a quantum annealer (D-Wave Neal / Leap), with classical methods handling road routing, sequencing, feasibility repair, and fuel planning.",
+      "Built a live digital-twin simulation — multiple depots, mixed truck fleets, hundreds of orders, and a full road network with tolls, congestion, and fuel stations — served through a FastAPI backend.",
+      "Designed real-time disruption handling: on a breakdown, road closure, or urgent order, the affected zone is isolated and re-optimized independently rather than re-solving the entire fleet.",
+      "Implemented deadhead elimination, assigning return-leg collections to trucks already heading home, and an interactive map for isolating and inspecting individual truck routes.",
     ],
     category: "quantum",
-    year: "2025",
-    techStack: [
-      "Qiskit",
-      "PennyLane",
-      "Python",
-      "QUBO/Ising Mapping",
-      "OR-Tools",
-      "D-Wave Ocean SDK",
-    ],
+    year: "2026",
+    techStack: ["Python", "QUBO", "D-Wave Ocean SDK", "FastAPI", "NetworkX", "JavaScript"],
     links: {},
     featured: true,
   },

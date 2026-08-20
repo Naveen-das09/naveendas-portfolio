@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight, Atom, Sparkles } from "lucide-react";
+import { ArrowUpRight, Atom, Orbit, Sparkles } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
@@ -50,6 +50,24 @@ export default function LabPage() {
                 A real 2-qubit variational circuit, trained live in your
                 browser with the parameter-shift rule — watch entanglement
                 unlock a boundary a classical linear model can&apos;t reach.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-1 text-sm text-cyan">
+                Open explainer <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Card>
+          </Link>
+        </Reveal>
+
+        <Reveal delay={0.16}>
+          <Link href="/lab/bloch-sphere" data-cursor-hover>
+            <Card className="h-full hover:-translate-y-1">
+              <Orbit className="h-6 w-6 text-warm" />
+              <h3 className="mt-4 font-display text-xl text-foreground">
+                Bloch Sphere &amp; Qubit Gates
+              </h3>
+              <p className="mt-2 text-sm text-foreground-muted">
+                Click through X, Y, Z, H, S, and T and watch a single qubit&apos;s
+                state vector move on an interactive 3D Bloch sphere.
               </p>
               <span className="mt-6 inline-flex items-center gap-1 text-sm text-cyan">
                 Open explainer <ArrowUpRight className="h-4 w-4" />
