@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { KineticText } from "@/components/ui/KineticText";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { CinematicHero } from "@/components/home/CinematicHero";
+import { NarrativeHint } from "@/components/home/NarrativeHint";
 import { useVisualTier, type VisualTier } from "@/lib/capabilities";
 import { BEATS, INTRO, type Beat } from "@/lib/narrative";
 import { site } from "@/lib/data/site";
@@ -21,24 +22,40 @@ const NarrativeScene = dynamic(
 );
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-const FADE = 0.035;
 
 /**
- * Build a cross-fade keyframe pair for one beat.
+ * Keyframes for one beat's fade, derived from the gaps to its neighbours.
  *
- * scrollYProgress is scroll-linked, so framer drives it through a native
- * ScrollTimeline — offsets outside [0,1] throw, and equal neighbours are
- * dropped rather than clamped. The trailing fade is omitted entirely when the
- * beat already ends at 1.
+ * Each gap is split in half: the outgoing beat finishes fading exactly where
+ * the incoming one starts. Overlapping them cross-fades two different blocks of
+ * copy in the same position, which reads as a glitch rather than a transition —
+ * so this is computed from the beat timings rather than a fixed width, and
+ * retuning BEATS can never reintroduce it.
  */
-function fadeRange(start: number, end: number) {
-  const inp = [Math.max(0, start - FADE), start, end];
-  const out = [0, 1, 1];
-  if (end + FADE <= 1) {
-    inp.push(end + FADE);
-    out.push(0);
+function beatRange(i: number): [number[], number[]] {
+  const b = BEATS[i];
+  const prevEnd = i === 0 ? INTRO.end : BEATS[i - 1].end;
+  const inFade = Math.max(0.004, (b.start - prevEnd) / 2);
+
+  // The last beat holds to the end of the section instead of fading out.
+  const isLast = i === BEATS.length - 1;
+  if (isLast || b.end >= 1) {
+    return [
+      [Math.max(0, b.start - inFade), b.start, 1],
+      [0, 1, 1],
+    ];
   }
-  return [inp, out] as const;
+
+  const outFade = Math.max(0.004, (BEATS[i + 1].start - b.end) / 2);
+  return [
+    [Math.max(0, b.start - inFade), b.start, b.end, Math.min(1, b.end + outFade)],
+    [0, 1, 1, 0],
+  ];
+}
+
+/** Where the identity panel must be gone by: the first beat's fade-in start. */
+function introFadeEnd() {
+  return Math.max(INTRO.end, INTRO.end + (BEATS[0].start - INTRO.end) / 2);
 }
 
 const HEADLINE = [
@@ -52,16 +69,18 @@ const HEADLINE = [
 /** One story panel, cross-fading as its slice of the scroll passes. */
 function BeatPanel({
   beat,
+  index,
   progress,
   active,
 }: {
   beat: Beat;
+  index: number;
   progress: MotionValue<number>;
   active: boolean;
 }) {
-  const [inp, out] = fadeRange(beat.start, beat.end);
+  const [inp, out] = beatRange(index);
   const opacity = useTransform(progress, inp, out);
-  const y = useTransform(progress, [Math.max(0, beat.start - FADE), beat.start], [24, 0]);
+  const y = useTransform(progress, [inp[0], beat.start], [24, 0]);
 
   return (
     <motion.div
@@ -162,7 +181,10 @@ function ScrollNarrativeInner({ tier }: { tier: VisualTier }) {
       progressRef.current = v;
       scrollYProgress.set(v);
 
-      const i = BEATS.findIndex((b) => v >= b.start - FADE && v <= b.end + FADE);
+      const i = BEATS.findIndex((b, bi) => {
+        const [inp] = beatRange(bi);
+        return v >= inp[0] && v <= inp[inp.length - 1];
+      });
       setActiveIndex((prev) => (prev === i ? prev : i));
     };
 
@@ -180,7 +202,7 @@ function ScrollNarrativeInner({ tier }: { tier: VisualTier }) {
   // ghosting behind the story copy at low opacity.
   const introOpacity = useTransform(
     scrollYProgress,
-    [INTRO.start, INTRO.end, Math.max(0, BEATS[0].start - FADE)],
+    [INTRO.start, INTRO.end, introFadeEnd()],
     [1, 1, 0],
   );
 
@@ -263,12 +285,15 @@ function ScrollNarrativeInner({ tier }: { tier: VisualTier }) {
           <BeatPanel
             key={beat.id}
             beat={beat}
+            index={i}
             progress={scrollYProgress}
             active={i === activeIndex}
           />
         ))}
 
         <Rail activeIndex={activeIndex} onSeek={seek} />
+
+        <NarrativeHint storyStarted={activeIndex !== -1} />
 
         {/* Scroll cue, only while the identity beat still holds. */}
         <motion.div
