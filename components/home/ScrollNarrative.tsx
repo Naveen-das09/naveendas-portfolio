@@ -7,7 +7,7 @@ import type { MotionValue } from "framer-motion";
 import { ArrowRight, Atom } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { KineticText } from "@/components/ui/KineticText";
+import { ScrambleHeadline } from "@/components/ui/ScrambleHeadline";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { CinematicHero } from "@/components/home/CinematicHero";
 import { NarrativeHint } from "@/components/home/NarrativeHint";
@@ -259,9 +259,9 @@ function ScrollNarrativeInner({ tier }: { tier: VisualTier }) {
                 text={site.role}
                 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan"
               />
-              <KineticText
+              <ScrambleHeadline
                 segments={HEADLINE}
-                delay={0.15}
+                delay={150}
                 className="mt-5 font-display text-4xl font-medium leading-[1.08] text-foreground sm:text-5xl lg:text-6xl"
               />
               <motion.p

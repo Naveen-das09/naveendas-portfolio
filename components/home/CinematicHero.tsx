@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Atom } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { KineticText } from "@/components/ui/KineticText";
+import { ScrambleHeadline } from "@/components/ui/ScrambleHeadline";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { HeroVisualGate } from "@/components/home/HeroVisualGate";
 import { site } from "@/lib/data/site";
@@ -68,9 +68,9 @@ export function CinematicHero() {
             />
           </motion.div>
 
-          <KineticText
+          <ScrambleHeadline
             segments={HEADLINE}
-            delay={0.15}
+            delay={150}
             className="mt-5 font-display text-4xl font-medium leading-[1.08] text-foreground sm:text-5xl lg:text-6xl"
           />
 

@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/lib/capabilities";
-
-const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01<>/\\[]{}=+*#%";
+import { scramble } from "@/lib/scramble";
 
 /**
  * Settles a short label out of random glyphs when it scrolls into view — a
@@ -44,17 +43,7 @@ export function ScrambleText({
       if (!start) start = now;
       const t = Math.min((now - start) / duration, 1);
       // Characters lock in left-to-right as `t` sweeps across the string.
-      const settled = t * text.length;
-      setScrambled(
-        text
-          .split("")
-          .map((ch, i) => {
-            if (ch === " ") return " ";
-            if (i < settled) return ch;
-            return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-          })
-          .join(""),
-      );
+      setScrambled(scramble(text, t, text.length));
       if (t < 1) {
         raf = requestAnimationFrame(tick);
       } else {
