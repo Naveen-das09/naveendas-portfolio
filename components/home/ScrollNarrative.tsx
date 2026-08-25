@@ -86,7 +86,12 @@ function BeatPanel({
     <motion.div
       style={{ opacity, y }}
       aria-hidden={!active}
-      className="absolute inset-0 flex items-center"
+      // opacity:0 does not stop hit-testing, and these panels stack over the
+      // intro — without this an invisible panel swallows its CTA clicks.
+      className={cn(
+        "absolute inset-0 flex items-center",
+        active ? "pointer-events-auto" : "pointer-events-none",
+      )}
     >
       <Container>
         <div className="max-w-xl">
@@ -242,7 +247,10 @@ function ScrollNarrativeInner({ tier }: { tier: VisualTier }) {
         <motion.div
           style={{ opacity: introOpacity }}
           aria-hidden={activeIndex !== -1}
-          className="absolute inset-0 flex items-center"
+          className={cn(
+            "absolute inset-0 flex items-center",
+            activeIndex === -1 ? "pointer-events-auto" : "pointer-events-none",
+          )}
         >
           <Container>
             <div className="max-w-4xl">

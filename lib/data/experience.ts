@@ -28,6 +28,16 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
+    role: "Entrepreneurship & Product Development",
+    org: "Independent Ventures",
+    location: "Kerala, India",
+    period: "2023 – 2024",
+    bullets: [
+      "Founded and ran a small trading venture in spices and bio-fertilizers, handling sourcing, pricing, margins and customer relationships end to end.",
+      "Designed and prototyped an AI legal-research assistant for practising lawyers, applying LLM-based retrieval over case law and statutes. Developed to prototype stage; not commercially released.",
+    ],
+  },
+  {
     role: "Data Scientist",
     org: "Gadgeon Smart Systems Pvt Ltd",
     location: "Kerala, India",
