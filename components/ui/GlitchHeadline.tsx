@@ -18,15 +18,15 @@ export type Segment = { text: string; className?: string };
  * text-shadow positionally, so a keyframe with a different number of shadows
  * would jump instead of easing.
  */
-const SPLIT_HARD = `3px 0 ${rgba(PALETTE.cyan, 0.85)}, -3px 0 ${rgba(PALETTE.violet, 0.85)}`;
-const SPLIT_SOFT = `1px 0 ${rgba(PALETTE.cyan, 0.5)}, -1px 0 ${rgba(PALETTE.violet, 0.5)}`;
+const SPLIT_HARD = `6px 0 ${rgba(PALETTE.cyan, 0.95)}, -6px 0 ${rgba(PALETTE.violet, 0.95)}`;
+const SPLIT_SOFT = `2px 0 ${rgba(PALETTE.cyan, 0.6)}, -2px 0 ${rgba(PALETTE.violet, 0.6)}`;
 const SPLIT_NONE = `0px 0 ${rgba(PALETTE.cyan, 0)}, 0px 0 ${rgba(PALETTE.violet, 0)}`;
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /** How often a settled headline twitches, and for how long. */
-const AMBIENT_EVERY = [6000, 10000] as const;
-const AMBIENT_MS = 220;
+const AMBIENT_EVERY = [4000, 7500] as const;
+const AMBIENT_MS = 300;
 
 /**
  * Headline reveal with a brief glitch, meant to be felt rather than read.
@@ -82,7 +82,7 @@ export function GlitchHeadline({
 
   useEffect(() => {
     if (reducedMotion || wordCount === 0) return;
-    const total = (delay + (wordCount - 1) * stagger + 0.5) * 1000;
+    const total = (delay + (wordCount - 1) * stagger + 0.6) * 1000;
     const t = window.setTimeout(() => setSettled(true), total);
     return () => window.clearTimeout(t);
   }, [reducedMotion, wordCount, delay, stagger]);
@@ -133,10 +133,10 @@ export function GlitchHeadline({
         animate={
           twitch === i
             ? {
-                opacity: [1, 0.82, 1],
-                x: [0, -2, 2, 0],
-                skewX: [0, -5, 3, 0],
-                textShadow: [SPLIT_NONE, SPLIT_HARD, SPLIT_SOFT, SPLIT_NONE],
+                opacity: [1, 0.62, 1, 0.8, 1],
+                x: [0, -6, 4, -2, 0],
+                skewX: [0, -12, 7, -3, 0],
+                textShadow: [SPLIT_NONE, SPLIT_HARD, SPLIT_SOFT, SPLIT_HARD, SPLIT_NONE],
                 transition: { duration: AMBIENT_MS / 1000, ease: "linear" },
               }
             : settled
@@ -148,15 +148,22 @@ export function GlitchHeadline({
                   transition: { duration: 0 },
                 }
               : {
-                  opacity: [0, 1, 0.7, 1],
-                  x: [-5, 3, -1, 0],
-                  skewX: [10, -4, 2, 0],
-                  textShadow: [SPLIT_HARD, SPLIT_HARD, SPLIT_SOFT, SPLIT_NONE],
+                  opacity: [0, 1, 0.45, 1, 0.75, 1],
+                  x: [-10, 6, -4, 2, -1, 0],
+                  skewX: [16, -9, 5, -3, 1, 0],
+                  textShadow: [
+                    SPLIT_HARD,
+                    SPLIT_HARD,
+                    SPLIT_SOFT,
+                    SPLIT_HARD,
+                    SPLIT_SOFT,
+                    SPLIT_NONE,
+                  ],
                   transition: {
-                    duration: 0.5,
+                    duration: 0.6,
                     delay: delay + i * stagger,
                     ease: EASE,
-                    times: [0, 0.3, 0.55, 1],
+                    times: [0, 0.2, 0.36, 0.54, 0.72, 1],
                   },
                 }
         }
