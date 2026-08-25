@@ -7,8 +7,7 @@ import { researchEntries } from "@/lib/data/research";
 import { getArticleSlugs } from "@/lib/mdx";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { LatticeBackground } from "@/components/layout/LatticeBackground";
-import { EntanglementField } from "@/components/home/EntanglementField";
+import { BackgroundLayer } from "@/components/layout/BackgroundLayer";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { AchievementsWidget } from "@/components/achievements/AchievementsWidget";
 
@@ -58,8 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <LatticeBackground />
-        <EntanglementField />
+        <BackgroundLayer />
         <CustomCursor />
         <Navbar />
         <main id="main-content" className="flex-1">

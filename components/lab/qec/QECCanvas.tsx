@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import { PALETTE } from "@/lib/palette";
 import type { Lattice } from "./lattice";
 
 interface QECCanvasProps {
@@ -13,13 +14,13 @@ interface QECCanvasProps {
 }
 
 const COLORS = {
-  dataIdle: "#8b93a7",
-  dataError: "#ffb454",
+  dataIdle: PALETTE.foregroundMuted,
+  dataError: PALETTE.warm,
   edge: "rgba(76, 201, 240, 0.18)",
-  ancillaIdle: "#2a3350",
-  ancillaFired: "#4cc9f0",
-  correction: "#b983ff",
-  text: "#565f78",
+  ancillaIdle: PALETTE.borderStrong,
+  ancillaFired: PALETTE.cyan,
+  correction: PALETTE.violet,
+  text: PALETTE.foregroundFaint,
 };
 
 export function QECCanvas({
@@ -134,6 +135,8 @@ export function QECCanvas({
           const center = project(dq.col, dq.row);
           ctx.save();
           ctx.strokeStyle = COLORS.correction;
+          ctx.shadowColor = COLORS.correction;
+          ctx.shadowBlur = 12;
           ctx.lineWidth = 3;
           ctx.setLineDash([6, 5]);
           const r = 22 * progress;

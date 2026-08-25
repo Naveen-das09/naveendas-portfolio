@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { PALETTE } from "@/lib/palette";
 import { predictProb, xorDataset, type Params4 } from "./circuit";
 
-const CYAN: [number, number, number] = [76, 201, 240];
-const WARM: [number, number, number] = [255, 180, 84];
+function toRgb(hex: string): [number, number, number] {
+  const n = parseInt(hex.slice(1), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+
+const CYAN = toRgb(PALETTE.cyan);
+const WARM = toRgb(PALETTE.warm);
 const GRID = 48;
 
 function lerpColor(t: number) {
@@ -66,12 +72,17 @@ export function QNNCanvas({
 
       for (const { point, label } of xorDataset) {
         const p = toPx(point);
+        const color = label === 1 ? PALETTE.warm : PALETTE.cyan;
         ctx.beginPath();
-        ctx.fillStyle = label === 1 ? "rgb(255,180,84)" : "rgb(76,201,240)";
-        ctx.strokeStyle = "#05070d";
+        ctx.fillStyle = color;
+        ctx.strokeStyle = PALETTE.background;
         ctx.lineWidth = 2;
+        // Matches the bloom on the WebGL scenes so the lab reads as one system.
+        ctx.shadowColor = color;
+        ctx.shadowBlur = 14;
         ctx.arc(p.x, p.y, 7, 0, Math.PI * 2);
         ctx.fill();
+        ctx.shadowBlur = 0;
         ctx.stroke();
       }
     }

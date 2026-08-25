@@ -4,11 +4,17 @@ import { Suspense, useEffect, useRef } from "react";
 import type { RefObject } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Line, OrbitControls, Text } from "@react-three/drei";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import * as THREE from "three";
+import { BLOOM, BLOOM_BOOST, PALETTE } from "@/lib/palette";
+import { useVisualTier } from "@/lib/capabilities";
+import { cn } from "@/lib/utils";
 import { GATES, type GateId, type Vec3 } from "./gates";
 
-const CYAN = "#4cc9f0";
-const VIOLET = "#b983ff";
+const CYAN = PALETTE.cyan;
+const VIOLET = PALETTE.violet;
+/** Pushed past 1.0 so the bloom pass picks the state vector out as the bright element. */
+const VIOLET_GLOW = new THREE.Color(PALETTE.violet).multiplyScalar(BLOOM_BOOST);
 
 function WireSphere() {
   return (
@@ -46,11 +52,13 @@ function StateVector({
   lastGateId,
   reducedMotion,
   probRef,
+  glow,
 }: {
   vector: Vec3;
   lastGateId: GateId | null;
   reducedMotion: boolean;
   probRef: RefObject<HTMLSpanElement | null>;
+  glow: boolean;
 }) {
   const group = useRef<THREE.Group>(null);
   const displayed = useRef(new THREE.Vector3(0, 0, 1));
@@ -108,11 +116,11 @@ function StateVector({
     <group ref={group}>
       <mesh position={[0, 0, 0.4]} rotation={[Math.PI / 2, 0, 0]}>
         <cylinderGeometry args={[0.02, 0.02, 0.8, 12]} />
-        <meshBasicMaterial color={VIOLET} toneMapped={false} />
+        <meshBasicMaterial color={glow ? VIOLET_GLOW : VIOLET} toneMapped={false} />
       </mesh>
       <mesh position={[0, 0, 0.85]} rotation={[Math.PI / 2, 0, 0]}>
         <coneGeometry args={[0.06, 0.14, 16]} />
-        <meshBasicMaterial color={VIOLET} toneMapped={false} />
+        <meshBasicMaterial color={glow ? VIOLET_GLOW : VIOLET} toneMapped={false} />
       </mesh>
     </group>
   );
@@ -129,12 +137,26 @@ export function BlochSphere({
   reducedMotion: boolean;
   probRef: RefObject<HTMLSpanElement | null>;
 }) {
+  const tier = useVisualTier();
+  const glow = tier === "full";
+
   return (
-    <div className="mx-auto h-[260px] w-[260px] md:h-[300px] md:w-[300px]">
+    /* The bloom pass clears opaque, so the canvas can never be transparent
+       when glowing. Rather than fight it, frame it as an instrument panel —
+       a bordered viewport, matching the rounded surfaces used site-wide. */
+    <div
+      className={cn(
+        "mx-auto h-[260px] w-[260px] overflow-hidden md:h-[300px] md:w-[300px]",
+        glow && "rounded-2xl border border-border bg-background",
+      )}
+    >
       <Canvas
-        dpr={[1, 2]}
+        dpr={[1, glow ? 1.75 : 2]}
         camera={{ position: [2.8, 2.0, 2.2], up: [0, 0, 1], fov: 42 }}
-        gl={{ alpha: true, antialias: true }}
+        gl={{ alpha: !glow, antialias: !glow }}
+        onCreated={({ gl }) => {
+          if (glow) gl.setClearColor(PALETTE.background, 1);
+        }}
       >
         <Suspense fallback={null}>
           <WireSphere />
@@ -144,9 +166,20 @@ export function BlochSphere({
             lastGateId={lastGateId}
             reducedMotion={reducedMotion}
             probRef={probRef}
+            glow={glow}
           />
         </Suspense>
         <OrbitControls enableZoom={false} enablePan={false} />
+        {glow && (
+          <EffectComposer multisampling={4}>
+            <Bloom
+              intensity={BLOOM.intensity}
+              luminanceThreshold={BLOOM.luminanceThreshold}
+              luminanceSmoothing={BLOOM.luminanceSmoothing}
+              mipmapBlur
+            />
+          </EffectComposer>
+        )}
       </Canvas>
     </div>
   );
