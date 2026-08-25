@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { CinematicHero } from "@/components/home/CinematicHero";
+import { ScrollNarrative } from "@/components/home/ScrollNarrative";
 import { projects } from "@/lib/data/projects";
 import { researchEntries } from "@/lib/data/research";
 
@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <>
-      <CinematicHero />
+      <ScrollNarrative />
 
       <section className="py-24">
         <Container>
