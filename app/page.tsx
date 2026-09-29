@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ResearchSpotlight } from "@/components/research/ResearchSpotlight";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -9,14 +10,18 @@ import { ScrollNarrative } from "@/components/home/ScrollNarrative";
 import { projects } from "@/lib/data/projects";
 import { researchEntries } from "@/lib/data/research";
 
-const thesis = researchEntries[0];
+const thesis = researchEntries.find((entry) => entry.slug === "neural-decoder-generalization")!;
 
 export default function Home() {
-  const featured = projects.filter((p) => p.featured);
+  const featured = projects.filter((p) => p.featured && p.slug !== "qec-lab");
 
   return (
     <>
       <ScrollNarrative />
+
+      <section id="featured-research" className="pt-16">
+        <Container><ResearchSpotlight /></Container>
+      </section>
 
       <section className="py-24">
         <Container>
@@ -81,9 +86,10 @@ export default function Home() {
                 className="font-mono text-xs uppercase tracking-[0.2em] text-warm"
               />
               <h3 className="mt-3 font-display text-2xl text-foreground">{thesis.title}</h3>
-              <p className="mt-4 text-sm text-foreground-muted">{thesis.status}</p>
+              <p className="mt-4 text-sm text-foreground-muted">{thesis.summary}</p>
+              <p className="mt-3 font-mono text-xs text-warm">{thesis.status}</p>
               <Button href={`/research/${thesis.slug}`} variant="outline" className="mt-6">
-                Read the abstract <ArrowRight className="h-4 w-4" />
+                Explore the research <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
           </Reveal>

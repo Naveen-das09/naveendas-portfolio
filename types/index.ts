@@ -13,6 +13,7 @@ export interface ProjectLinks {
   github?: string;
   demo?: string;
   paper?: string;
+  research?: string;
 }
 
 export interface Project {
@@ -26,6 +27,7 @@ export interface Project {
   techStack: string[];
   links: ProjectLinks;
   featured?: boolean;
+  image?: { src: string; alt: string };
 }
 
 export interface Publication {

@@ -31,7 +31,7 @@ export function ProjectsExplorer({
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter projects by category">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
         <FilterPill active={category === "all"} onClick={() => select("all")}>
           All
         </FilterPill>
@@ -65,6 +65,7 @@ function FilterPill({
   return (
     <button
       type="button"
+      aria-pressed={active}
       onClick={onClick}
       data-cursor-hover
       className={cn(

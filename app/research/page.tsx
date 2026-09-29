@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { keyCourses, researchEntries, researchInterests } from "@/lib/data/research";
 
-export const metadata: Metadata = { title: "Research" };
+export const metadata: Metadata = { title: "Research", description: "Quantum error correction research: neural-decoder generalization, QEC Lab methods, validation, and reproducible experiments." };
 
 export default function ResearchPage() {
   return (
@@ -15,8 +15,8 @@ export default function ResearchPage() {
       <Reveal>
         <SectionHeading
           eyebrow="Research"
-          title="Research"
-          description="Ongoing and future research, starting with my M.Tech thesis on generalization in neural decoders for quantum error correction."
+          title="Research, built on evidence"
+          description="My work in quantum error correction: an open-source simulation workspace and an ongoing thesis on what neural decoders learn across code distances and families."
         />
       </Reveal>
 
@@ -34,7 +34,7 @@ export default function ResearchPage() {
                 </h2>
                 <p className="mt-3 max-w-2xl text-foreground-muted">{entry.summary}</p>
                 <span className="mt-5 inline-flex items-center gap-1 text-sm text-cyan">
-                  Read the full abstract <ArrowRight className="h-4 w-4" />
+                  Methods, progress & documentation <ArrowRight className="h-4 w-4" />
                 </span>
               </div>
             </Link>

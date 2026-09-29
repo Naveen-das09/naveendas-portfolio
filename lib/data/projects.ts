@@ -2,6 +2,26 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "qec-lab",
+    title: "QEC Lab — Open-source Research Workspace",
+    summary: "Design surface-code experiments, inspect logical failures, and share reproducible evidence in one local research workspace.",
+    description: [
+      "Built an end-to-end quantum error correction workspace around real Stim simulations and PyMatching minimum-weight perfect-matching decoding, supporting rotated surface-code Z-memory experiments at distances 3, 5, 7, and 9.",
+      "Implemented baseline noise sweeps, measurement-noise stress tests, and matched versus mismatched decoder assumptions, with pointwise 95% Wilson intervals and inspection of actual failed shots.",
+      "Designed project workspaces, editable experiment drafts, a cancellable job queue, persistent SQLite history, comparison charts, and illustrated research reports.",
+      "Made investigations reproducible through exports containing exact circuits, decoder models, batch seeds, dependency versions, CSV measurements, and a standalone replay script.",
+      "Integrated an optional Gemini assistant that reads measured evidence and stages validated experiment plans. Researchers explicitly start each investigation; the scientific workflow also works without an AI key.",
+      "Released the code under the MIT license. The current scope is a working single-workspace alpha, with v0.2 project and reporting features in development.",
+    ],
+    category: "quantum",
+    status: "Open source · Working alpha",
+    year: "2026",
+    techStack: ["Python", "Stim", "PyMatching", "FastAPI", "SQLite", "Gemini", "JavaScript"],
+    links: { github: "https://github.com/Naveen-das09/qec-lab", research: "/research/qec-lab" },
+    featured: true,
+    image: { src: "/projects/qec-lab/results.png", alt: "QEC Lab results workspace showing a measurement-noise stress investigation and logical error curves" },
+  },
+  {
     slug: "qflux",
     title: "Q-FLUX — Quantum-Optimized Fleet Logistics Digital Twin",
     summary:

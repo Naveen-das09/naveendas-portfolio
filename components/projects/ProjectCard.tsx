@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/types";
 import { CATEGORY_LABEL } from "@/types";
@@ -14,9 +15,10 @@ const CATEGORY_TONE = {
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link href={`/projects/${project.slug}`} data-cursor-hover>
+    <Link href={`/projects/${project.slug}`} data-cursor-hover className="block h-full">
       <TiltCard className="h-full">
         <Card className="h-full hover:-translate-y-1 hover:shadow-[0_0_40px_-20px_var(--accent-cyan)]">
+          {project.image && <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-lg border border-border"><Image src={project.image.src} alt={project.image.alt} fill sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 350px" className="object-cover object-top" /></div>}
           <div className="flex items-start justify-between gap-3">
             <Badge tone={CATEGORY_TONE[project.category]}>
               {CATEGORY_LABEL[project.category]}

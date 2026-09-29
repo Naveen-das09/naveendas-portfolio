@@ -105,7 +105,7 @@ function BeatPanel({
           {beat.id === "decode" && (
             <div className="mt-8 flex flex-wrap gap-4">
               <Button href="/lab/quantum-error-correction" variant="outline">
-                <Atom className="h-4 w-4" /> Try the QEC lab
+                <Atom className="h-4 w-4" /> Try the QEC explainer
               </Button>
               <Button href="/research" variant="ghost">
                 Read the research <ArrowRight className="h-4 w-4" />
@@ -281,7 +281,7 @@ function ScrollNarrativeInner({ tier }: { tier: VisualTier }) {
                 <Button href="/projects">
                   View Projects <ArrowRight className="h-4 w-4" />
                 </Button>
-                <Button href="/lab/quantum-error-correction" variant="outline">
+                <Button href="/projects/qec-lab" variant="outline">
                   <Atom className="h-4 w-4" /> Explore the QEC Lab
                 </Button>
               </motion.div>

@@ -92,7 +92,7 @@ export function CinematicHero() {
             <Button href="/projects">
               View Projects <ArrowRight className="h-4 w-4" />
             </Button>
-            <Button href="/lab/quantum-error-correction" variant="outline">
+            <Button href="/projects/qec-lab" variant="outline">
               <Atom className="h-4 w-4" /> Explore the QEC Lab
             </Button>
           </motion.div>
